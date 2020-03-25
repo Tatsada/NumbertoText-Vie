@@ -27,7 +27,7 @@ def readTenAndUnitDigit(inputNum):
     listSingleDigit = ["không", "một", "hai", "ba",
                        "bốn", "năm", "sáu", "bảy", "tám", "chín"]
     if int(inputNum) <= 9:
-        readTenAndUnitDigit = listSingleDigit[int(inputNum)]
+        return listSingleDigit[int(inputNum)]
     else:
         if inputNum[-2] == "1":
             readTenDigit = "mười"
@@ -42,6 +42,14 @@ def readTenAndUnitDigit(inputNum):
     return readTenDigit + " " + readUnitDigit
 
 
-def numberToTex(inputNum):
+def numberToText(inputNum):
+    listDigitGroup = ["", "nghìn", "triệu", "tỷ"]
     numberToTex = ""
+    for i in range(len(splitDigitGroup(inputNum)) - 1, -1, -1):
+        numberToTex += (" " + readSingleGroup(splitDigitGroup(inputNum)
+                                              [i]) + " " + listDigitGroup[i])
     return numberToTex
+
+
+n = input("Nhập số : ")
+print("Số đọc là:", numberToText(n))
