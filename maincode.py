@@ -20,74 +20,35 @@ def splitDigitGroup(inputNum):
 
 
 def readSingleGroup(inputNum):
-	readHundredDigit = (
-	    listSingleDigit[int(inputNum[-3])] + " trăm") if len(inputNum) == 3 else ""
-    # Đọc số hàng đơn vị
-	if inputNum[-1] == "0":
-	        readUnitDigit = ""
-	elif inputNum[-1] == "1":
-		if inputNum[-2] == "0" or inputNum[-2] == "1" or len(inputNum)==1:
-			readUnitDigit = " một"
-		else:
-			readUnitDigit = " mốt"
-	elif inputNum[-1] == "5":
-		if inputNum[-2] == "0":
-			readUnitDigit = " năm"
-		else:
-			readUnitDigit = " lăm"
-	else:
-        readUnitDigit = " " + listSingleDigit[int(inputNum[-1])]
-    '''if len(inputNum) == 3:		# Đủ 3 chữ số
-        readHundredDigit = listSingleDigit[int(inputNum[-3])] + " trăm"
-        # Đọc số hàng chục
-        if inputNum[-2] == "1":
-            readTenDigit = " mười"
-        elif inputNum[-2] == "0":
-            if inputNum[-1] == "0":
-                readTenDigit = ""
-            else:
-                readTenDigit = " linh"
-        else:
-            readTenDigit = " " + listSingleDigit[int(inputNum[-2])] + " mươi"
-        # Đọc số hàng đơn vị
-        if inputNum[-1] == "0":
-            readUnitDigit = ""
-        elif inputNum[-1] == "1":
-            if inputNum[-2] == "0" or inputNum[-2] == "1":
-                readUnitDigit = " một"
-            else:
-                readUnitDigit = " mốt"
-        elif inputNum[-1] == "5":
-            if inputNum[-2] == "0":
-                readUnitDigit = " năm"
-            else:
-                readUnitDigit = " lăm"
-        else:
-            readUnitDigit = " " + listSingleDigit[int(inputNum[-1])]
-        return readHundredDigit + readTenDigit + readUnitDigit
-    elif len(inputNum) == 2:
-        readHundredDigit = ""
-        if inputNum[-2] == "1":
-            readTenDigit = "mười"
-        else:
-            readTenDigit = listSingleDigit[int(inputNum[-2])] + " mươi"
 
+    # Đọc số hàng trăm
+    readHundredDigit = (
+        listSingleDigit[int(inputNum[-3])] + " trăm") if len(inputNum) == 3 else ""
+
+    # Đọc số hàng đơn vị
+    if len(inputNum) >= 2:
         if inputNum[-1] == "0":
             readUnitDigit = ""
         elif inputNum[-1] == "1":
-            if inputNum[-2] == "1":
-                readUnitDigit = " một"
-            else:
-                readUnitDigit = " mốt"
+            readUnitDigit = " một" if inputNum[-2] == "0" or inputNum[-2] == "1" else " mốt"
         elif inputNum[-1] == "5":
-            readUnitDigit = " lăm"
+            readUnitDigit = " năm" if inputNum[-2] == "0" else " lăm"
         else:
             readUnitDigit = " " + listSingleDigit[int(inputNum[-1])]
     else:
-        readHundredDigit = ""
+        readUnitDigit = " " + listSingleDigit[int(inputNum[-1])]
+
+    # Đọc số hàng chục
+    if len(inputNum) >= 2:
+        if inputNum[-2] == "1":
+            readTenDigit = " mười"
+        elif inputNum[-2] == "0":
+            readTenDigit = "" if inputNum[-1] == "0" else " linh"
+        else:
+            readTenDigit = " " + listSingleDigit[int(inputNum[-2])] + " mươi"
+    else:
         readTenDigit = ""
-        readUnitDigit = listSingleDigit[int(inputNum)]
-    return readHundredDigit + readTenDigit + readUnitDigit'''
+    return readHundredDigit + readTenDigit + readUnitDigit
 
 
 def numberToText(inputNum):
