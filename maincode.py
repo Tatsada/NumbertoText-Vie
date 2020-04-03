@@ -7,7 +7,7 @@ listDigitGroup = ["", "nghìn", "triệu", "tỷ"]
 def splitDigitGroup(inputNum):
     numOfDigitGroup = math.ceil(len(inputNum) / 3)
     if numOfDigitGroup == 1:
-        digitGroup = list(inputNum)
+        digitGroup = [(inputNum)]
     else:
         tempInputNum = inputNum
         i = 1
